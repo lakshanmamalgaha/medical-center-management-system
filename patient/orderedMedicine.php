@@ -49,7 +49,7 @@ include BASEURL.'includes/navigation_patient.php';
           <tr>
           <td> <?php echo $app->id; ?> </td>
           <td> <?php echo $app->ordered_date; ?> </td>
-          <td> <a class="btn btn-info btn-block" href="view_order.php?order?=<?php echo $app->id; ?>">View</a> </td>
+          <td> <a class="btn btn-info btn-block" href="view_order.php?order=<?php echo $app->id; ?>">View</a> </td>
 
         </tr>
           <?php

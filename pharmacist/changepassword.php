@@ -5,7 +5,7 @@ $user = new User();
 if($user->isLoggedIn()) {
 	$title='Doctor: Change Password';
 include BASEURL.'includes/head.php';
-include BASEURL.'includes/navigation_doctor.php';
+include BASEURL.'includes/navigation_pharmacist.php';
 ?>
 
 <div class="content-wrapper">

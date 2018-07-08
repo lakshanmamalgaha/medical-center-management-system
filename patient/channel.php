@@ -3,6 +3,7 @@
 require_once '../core/init.php';
 $user = new User();
 if($user->isLoggedIn()) {
+	$title='Patient:Channel a Doctor';
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_patient.php';
 
@@ -13,7 +14,8 @@ if(Session::exists('home'))
 if($_GET['channel']){
   $channelID=(int)$_GET['channel'];
   if(Input::exists()){
-
+		if(Token::check(Input::get('token')) )
+		{
   		$validate = new Validation();
   		$validation = $validate->check($_POST, array(
   			'booking_date'=>array(
@@ -34,7 +36,10 @@ if($_GET['channel']){
           $bookingDT
 
         ))->count();
-
+				$start_date=$bookingDT;
+    		$expire=strtotime($start_date);
+    		$today=strtotime(date("Y-m-d H:i"));
+				if($today<=$expire){
         if(!$sd>0){
   			try{
   			     $db->insert('appointment',array(
@@ -43,8 +48,8 @@ if($_GET['channel']){
             'date'=>$bookingDT
           ));
 
-  				Session::flash('home', 'Successfully Channeled.');
-  				Redirect::to('index.php');
+  				Session::flash('success', 'Successfully Channeled.');
+  				Redirect::to('appointment.php');
   			}
   			catch(Exception $e){
   				die($e->getMessage());
@@ -63,8 +68,24 @@ if($_GET['channel']){
             </ol>
 
         <?php
-        echo 'This date is already taken';
+        echo '<p class="text-danger" >This time is already taken. </p>';
       }
+		}else{
+			?>
+			<div class="content-wrapper">
+				<div class="container-fluid">
+					<!-- Breadcrumbs-->
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="#">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active">Channel</li>
+					</ol>
+
+			<?php
+			echo '<p class="text-danger" >This date is invalid. </p>';
+
+		}
   	}
   		else{
         ?>
@@ -83,6 +104,7 @@ if($_GET['channel']){
   				echo $error, '<br />';
   			}
   		}
+		}
 
   }else {
     ?>
@@ -124,6 +146,7 @@ if($_GET['channel']){
             </hr>
               <div class="form-group">
                 <hr>
+								<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
                 <input class="form-control btn btn-primary btn-block" type="submit" name="channel" value="Channel Doctor">
               </div>
             </div>

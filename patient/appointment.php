@@ -3,6 +3,7 @@
 require_once '../core/init.php';
 $user = new User();
 if($user->isLoggedIn()) {
+	$title='Patient:Appointments';
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_patient.php';
 ?>
@@ -16,6 +17,12 @@ include BASEURL.'includes/navigation_patient.php';
 			</li>
       <li class="breadcrumb-item active">Appointments</li>
 		</ol>
+		<?php
+		if(Session::exists('success'))
+		{
+			echo '<p class="text-success">' .Session::flash('success').'</p>';
+		}
+		 ?>
 
   <div>
     <table class="table text-center">

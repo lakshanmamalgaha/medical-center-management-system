@@ -1,29 +1,41 @@
 <?php
 
 require_once '../core/init.php';
-
-if(Session::exists('home'))
+$user = new User();
+if($user->isLoggedIn()) {
+	$title='Doctor:Dashboard';
+include BASEURL.'includes/head.php';
+include BASEURL.'includes/navigation_doctor.php';
+?>
+<div class="content-wrapper">
+	<div class="container-fluid">
+		<!-- Breadcrumbs-->
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="index.php">Dashboard</a>
+			</li>
+			<li class="breadcrumb-item active">My Dashboard</li>
+		</ol>
+<?php
+if(Session::exists('success'))
 {
-	echo '<p>' .Session::flash('home').'</p>';
+	echo '<p class="text-success">' .Session::flash('success').'</p>';
 }
 
-$user = new User();
 
-if($user->isLoggedIn()) {
+
 ?>
-	<p>Hello, <a href="profile.php?user=<?php echo escape($user->data()->email); ?>"><?php echo escape($user->data()->email); ?></a>!
+	<p>Hello, <?php echo escape($user->data()->fullname); ?></p>
 
-	<ul>
-		<li><a href="../logout.php">Log Out</a></li>
-		<li><a href="update.php">Update Information</a></li>
-		<li><a href="changepassword.php">Change Password</a></li>
-	</ul>
+
+	</div>
+</div>
 <?php
 
+include BASEURL.'includes/footer.php';
 
-
-} else {
-	echo '<p>You need to <a href="login.php">login</a> or <a href="register.php">register</a>';
+}else{
+	Redirect::to('../login.php');
 }
 
 ?>

@@ -71,7 +71,8 @@ include BASEURL.'includes/navigation_admin.php';
 									<li class="breadcrumb-item">
 										<a href="index.php">GoodLife</a>
 									</li>
-									<li class="breadcrumb-item active">Doctors</li>
+									<li class="breadcrumb-item"><a href="doctor.php">Doctors</a></li>
+									<li class="breadcrumb-item">ADD Doctor</li>
 								</ol>
 						<?php
 						foreach ($validate->errors() as $error) {
@@ -83,12 +84,13 @@ include BASEURL.'includes/navigation_admin.php';
         echo '<div class="content-wrapper">
           <div class="container-fluid">
             <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="index.php">GoodLife</a>
-              </li>
-              <li class="breadcrumb-item active">Doctors</li>
-            </ol>';
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item">
+								<a href="index.php">GoodLife</a>
+							</li>
+							<li class="breadcrumb-item"><a href="doctor.php">Doctors</a></li>
+							<li class="breadcrumb-item">ADD Doctor</li>
+						</ol>';
       }
 			?>
 
