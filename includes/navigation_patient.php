@@ -11,31 +11,37 @@
           <span class="nav-link-text">Dashboard</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Doctors">
         <a class="nav-link" href="doctor.php">
           <i class="fa fa-fw fa-table"></i>
           <span class="nav-link-text">Doctors</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Appointments">
         <a class="nav-link" href="appointment.php">
           <i class="fa fa-fw fa-table"></i>
-          <span class="nav-link-text">Appoinments</span>
+          <span class="nav-link-text">Appointments</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Order Medicine">
+        <a class="nav-link" href="order.php?order=<?php echo $user->data()->id; ?>">
+          <i class="fa fa-fw fa-table"></i>
+          <span class="nav-link-text">Order Medicine</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ordered Medicne">
         <a class="nav-link" href="orderedMedicine.php">
           <i class="fa fa-fw fa-table"></i>
-          <span class="nav-link-text">Ordred Medicine</span>
+          <span class="nav-link-text">Ordered Medicine</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Medical History">
         <a class="nav-link" href="medicalHistory.php">
           <i class="fa fa-fw fa-table"></i>
           <span class="nav-link-text">Medical History</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-wrench"></i>
           <span class="nav-link-text">Settings</span>
