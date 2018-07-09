@@ -186,7 +186,7 @@ if(isset($_GET['order'])){
          </div>
          <div class="form-group">
            <label for="note">Note</label>
-           <textarea name="note" rows="4" cols="80" class="form-control" value=""></textarea>
+           <textarea name="note" rows="4" cols="80" class="form-control" value=""><?php echo escape(Input::get('note')); ?></textarea>
 
          </div>
          <div class="form-group col-md-3 pull-right">
