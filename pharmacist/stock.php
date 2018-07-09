@@ -33,11 +33,11 @@ include BASEURL.'includes/navigation_pharmacist.php';
               <div class="form-row">
                 <div class="col-md-8">
 
-                  <input class="form-control" id="search" type="text" aria-describedby="nameHelp" placeholder="Search a pharmacist" name="search">
+                  <input class="form-control" id="search" type="text" aria-describedby="nameHelp" placeholder="Enter item code" name="search">
                 </div>
                 <div class="col-md-2">
 
-                  <input class="form-control btn btn-info btn-block" type="submit" aria-describedby="nameHelp" placeholder="Search" value="Search">
+                  <input class="form-control btn btn-info btn-block" type="submit" aria-describedby="nameHelp" placeholder="Search" value="search">
                 </div>
               </div>
             </div>
@@ -67,6 +67,46 @@ include BASEURL.'includes/navigation_pharmacist.php';
         '>',
         0
       ))->results();
+      if(isset($_POST['search']) && !empty($_POST['search'])){
+        $searchquery=$_POST['search'];
+        $searchquery=preg_replace("#[^0-9a-z]#i","",$searchquery);
+        $query=$db->get('pharmacy',array('code','=',(int)$searchquery))->results();
+       /* $query1=$db->get('pharmacy',array('description','=',$searchquery))->results();
+          */
+        $count=sizeof($query);
+        if($count==0){
+          echo 'No search results found!';
+        }else {
+
+      foreach ($query as $item) {
+        # code.
+       ?>
+      <tr>
+          <td><?php echo $item->code; ?></td>
+          <td><?php echo $item->description; ?></td>
+          <td><?php echo $item->packsize; ?></td>
+          <td><?php echo $item->unit_price; ?></td>
+          <td><?php echo $item->active_grades; ?></td>
+          <td><?php echo $item->sup_code; ?></td>
+          <td><?php echo $item->supplier; ?></td>
+          <td> <a href="updateitem.php?update=<?php echo $item->id; ?>" class="btn btn-info btn-sm">Update</a>
+          <a href="stock.php?delete=<?php echo $item->id; ?>" class="btn btn-danger btn-sm" >Delete</a></td>
+         </tr>
+    <?php }}}
+    elseif(isset($_GET['delete'])){
+          $uid=(int)$_GET['delete'];
+          echo $uid;
+                  $db->delete('pharmacy',$uid);
+                  Session::flash('success', 'Successfully Deleted.');
+                  Redirect::to('stock.php');
+
+            
+              
+              
+              
+            
+          }
+    else{
       foreach ($Items as $item) {
         ?>
         <tr>
@@ -78,10 +118,10 @@ include BASEURL.'includes/navigation_pharmacist.php';
           <td><?php echo $item->sup_code; ?></td>
           <td><?php echo $item->supplier; ?></td>
           <td> <a href="updateitem.php?update=<?php echo $item->id; ?>" class="btn btn-info btn-sm">Update</a>
-					<a href="" class="btn btn-danger btn-sm">Delete</a></td>
+					<a href="stock.php?delete=<?php echo $item->id; ?>" class="btn btn-danger btn-sm">Delete</a></td>
         </tr>
         <?php
-      } ?>
+      }} ?>
 
 
     </tbody>

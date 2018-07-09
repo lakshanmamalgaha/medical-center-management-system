@@ -150,7 +150,10 @@ class DB{
 		}
 		return false;
 	}
-
+	/*public function delete($table,$id)
+	{
+		$sql="DELETE FROM {$table} WHERE id={$id}";
+	}*/
 	public function results()
 	{
 		return $this->_results;
