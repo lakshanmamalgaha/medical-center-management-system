@@ -15,6 +15,7 @@ class Validation{
 			foreach ($rules as $rule => $rule_value) {
 				
 				$value = trim($source[$item]);
+				
 				$item = escape($item);
 
 				if($rule === 'required' && empty($value))
@@ -52,6 +53,29 @@ class Validation{
 								$this->addError("{$item} already exists.");
 							}
 							break;
+						case 'characters':
+							$string_exp="/^[A-Za-z ]+$/";
+					      	if(!preg_match($string_exp,$item)){
+					        	$this->addError("{$item} should contain only characters!");
+					      }
+					      break;
+					      case 'integer':
+							$string_exp="/^[0-9]+$/";
+					      	if(!preg_match($string_exp,$item)){
+					        	$this->addError("{$item} should contain only numbers!");
+					      }
+					      break;
+					      case 'strong':
+
+						      if (!preg_match("#[0-9]+#", $item)) {
+	        						$this->addError("Password must include at least one number!");
+	   						 	}
+
+						    if (!preg_match("#[a-zA-Z]+#", $item)) {
+						        $this->addError("Password must include at least one letter!");
+						    } 
+						    break;    
+
 					}
 				}
 			}

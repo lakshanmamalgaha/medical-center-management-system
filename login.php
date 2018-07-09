@@ -55,7 +55,7 @@
 				}
 				}
 				else{
-					echo "sorry! Failed";
+					echo "E-mail does not exist! Please register.";
 				}
 			}
 			else{

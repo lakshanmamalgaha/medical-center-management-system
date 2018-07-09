@@ -6,6 +6,20 @@ if($user->isLoggedIn()) {
 	$title='Pharmacist: Stock';
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_pharmacist.php';
+$db=DB::getInstance();
+if(isset($_GET['delete'])){
+          $uid=(int)$_GET['delete'];
+          //echo $uid;
+                  $db->delete('pharmacy',array(
+                    'id',
+                      '=',
+                      $uid));
+                  Session::flash('success', 'Successfully Deleted.');
+                  Redirect::to('stock.php');
+ 
+            
+          }
+
 
 ?>
 <div class="content-wrapper">
@@ -61,7 +75,7 @@ include BASEURL.'includes/navigation_pharmacist.php';
       </tr>
     </thead>
     <tbody>
-      <?php $db=DB::getInstance();
+      <?php 
       $Items=$db->get('pharmacy',array(
         'id',
         '>',
@@ -93,19 +107,6 @@ include BASEURL.'includes/navigation_pharmacist.php';
           <a href="stock.php?delete=<?php echo $item->id; ?>" class="btn btn-danger btn-sm" >Delete</a></td>
          </tr>
     <?php }}}
-    elseif(isset($_GET['delete'])){
-          $uid=(int)$_GET['delete'];
-          echo $uid;
-                  $db->delete('pharmacy',$uid);
-                  Session::flash('success', 'Successfully Deleted.');
-                  Redirect::to('stock.php');
-
-            
-              
-              
-              
-            
-          }
     else{
       foreach ($Items as $item) {
         ?>
