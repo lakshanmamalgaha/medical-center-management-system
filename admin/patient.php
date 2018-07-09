@@ -1,11 +1,26 @@
 <?php
-
 require_once '../core/init.php';
 $user = new User();
 if($user->isLoggedIn()) {
+	$title='Admin : Patients';
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_admin.php';
 $db=DB::getInstance();
+
+if (isset($_GET['delete'])) {
+	$did=(int)$_GET['delete'];
+	$db->delete('users',array(
+		'id',
+		'=',
+		$did
+	));
+	Session::flash('success', 'Successfully deleted.');
+	Redirect::to('patient.php');
+
+}
+{
+	echo '<p class="text-success">' .Session::flash('success').'</p>';
+}
 ?>
 
 <div class="content-wrapper">
@@ -42,10 +57,11 @@ $db=DB::getInstance();
 		 <table class="table table-striped text-center" >
 			 <thead class="text-center">
 				 <tr class="text-center bg-info">
-				 <th>ID</th>
+				 <th>Reg No</th>
 				 <th>Name</th>
 				 <th>Email</th>
 				 <th>Join Date</th>
+				 <th></th>
 				 </tr>
 			 </thead>
 			 <tbody>
@@ -70,7 +86,8 @@ $db=DB::getInstance();
 									 <td><?php echo $key->id; ?></td>
 									<td><?php echo $key->fullname; ?></td>
 									<td><?php echo $key->email; ?></td>
-									<td><?php echo $key->joined; ?></td>
+									<td><?php echo date_fo($key->joined); ?></td>
+									<td> <a class="btn btn-danger btn-sm" href="patient.php?delete=<?php echo $key->id; ?>">Delete</a> </td>
 						 </tr><?php
 
 						 }
@@ -89,7 +106,8 @@ $db=DB::getInstance();
 										<td><?php echo $key->id; ?></td>
 									 <td><?php echo $key->fullname; ?></td>
 									 <td><?php echo $key->email; ?></td>
-									 <td><?php echo $key->joined; ?></td>
+									 <td><?php echo date_fo($key->joined); ?></td>
+									 <td> <a class="btn btn-danger btn-sm" href="patient.php?delete=<?php echo $key->id; ?>">Delete</a> </td>
 							</tr><?php
 
 							}

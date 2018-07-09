@@ -57,7 +57,7 @@ include BASEURL.'includes/navigation_admin.php';
                   <td><?php echo $key->id; ?></td>
                  <td><?php echo $key->fullname; ?></td>
                  <td><?php echo $key->email; ?></td>
-                 <td><?php echo $key->joined; ?></td>
+                 <td><?php echo date_fo($key->joined); ?></td>
             </tr><?php
 
 						}

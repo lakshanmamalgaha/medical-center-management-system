@@ -7,6 +7,20 @@ include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_admin.php';
 
 $db=DB::getInstance();
+if (isset($_GET['delete'])) {
+	$did=(int)$_GET['delete'];
+	$db->delete('users',array(
+		'id',
+		'=',
+		$did
+	));
+	Session::flash('success', 'Successfully deleted.');
+	Redirect::to('doctor.php');
+
+}
+{
+	echo '<p class="text-success">' .Session::flash('success').'</p>';
+}
 
 
 	?>
@@ -94,6 +108,7 @@ $db=DB::getInstance();
 								<td><?php echo $key->email; ?></td>
 								<td><?php echo $sp->speciality; ?></td>
 								<td><?php echo date_fo($key->joined); ?></td>
+								<td> <a class="btn btn-danger btn-sm" href="doctor.php?delete=<?php echo $key->id; ?>">Delete</a> </td>
 					 </tr><?php
 
 					 }
@@ -118,6 +133,7 @@ $db=DB::getInstance();
                  <td><?php echo $key->email; ?></td>
 								 <td><?php echo $sp->speciality; ?></td>
                  <td><?php echo date_fo($key->joined); ?></td>
+								 <td> <a class="btn btn-danger btn-sm" href="doctor.php?delete=<?php echo $key->id; ?>">Delete</a> </td>
             </tr><?php
 
 					}}
