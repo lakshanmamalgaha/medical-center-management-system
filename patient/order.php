@@ -3,8 +3,52 @@
 require_once '../core/init.php';
 $user = new User();
 if($user->isLoggedIn()) {
+  $title='Patient : Order';
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_patient.php';
+?>
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.php">GoodLife</a>
+      </li>
+      <li class="breadcrumb-item active">Order Medicine</li>
+    </ol>
+
+    <div class="center" id="order_medicine">
+
+      <div class="row">
+          <div class="col-md-3">
+            <div class="how-it-proccess">
+            <img src="../images/presc.png" class="img-responsive" alt="upload">
+            <div style="text-align: center;">
+              <span>Upload Prescriptions</span>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-3">
+            <div class="how-it-proccess">
+            <img src="../images/order-process.png" class="img-responsive">
+            <div style="text-align: center;">
+                <span>Pharmacy process the order</span>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-3">
+            <div class="how-it-proccess">
+            <img src="../images/deliver.png" class="img-responsive">
+            <div style="text-align: center;">
+                  <span>Doorstep Delivery</span>
+            </div>
+          </div>
+          </div>
+        </div>
+<hr>
+</div>
+
+<?php
 if(isset($_GET['order'])){
   $orderID=(int)$_GET['order'];
   if(Input::exists())
@@ -44,7 +88,7 @@ if(isset($_GET['order'])){
 
                 $upload_name=md5(microtime()).'.'.$file_ext;
                 $upload_location=BASEURL.'prescription/'.$upload_name;
-                $prescription_path='/Myp/prescription/'.$upload_name;
+                $prescription_path='/myp-master/prescription/'.$upload_name;
 
                 if (!in_array($file_ext,$allowed)) {
                   $error_array[].='The file extension must be png,jpg,jpeg,gif';
@@ -76,98 +120,16 @@ if(isset($_GET['order'])){
               }
 
   			}else {
-          ?>
-          <div class="content-wrapper">
-          	<div class="container-fluid">
-          		<!-- Breadcrumbs-->
-          		<ol class="breadcrumb">
-          			<li class="breadcrumb-item">
-          				<a href="index.php">GoodLife</a>
-          			</li>
-                <li class="breadcrumb-item active">Order Medicine</li>
-          		</ol>
-
-              <div class="center" id="order_medicine">
-
-                <div class="row">
-                    <div class="col-md-3">
-                      <div class="how-it-proccess">
-                      <img src="../images/presc.png" class="img-responsive" alt="upload">
-                      <div style="text-align: center;">
-                        <span>Upload Prescriptions</span>
-                      </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="how-it-proccess">
-                      <img src="../images/order-process.png" class="img-responsive">
-                      <div style="text-align: center;">
-                          <span>Pharmacy process the order</span>
-                      </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="how-it-proccess">
-                      <img src="../images/deliver.png" class="img-responsive">
-                      <div style="text-align: center;">
-                            <span>Doorstep Delivery</span>
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-          <hr>
-          </div>
-          <?php
-
   			foreach ($validation->errors() as $error) {
   				echo $error, '<br>';
   			}
   		}
 
 
-  }else {
+  }
     ?>
-    <div class="content-wrapper">
-    	<div class="container-fluid">
-    		<!-- Breadcrumbs-->
-    		<ol class="breadcrumb">
-    			<li class="breadcrumb-item">
-    				<a href="index.php">GoodLife</a>
-    			</li>
-          <li class="breadcrumb-item active">Order Medicine</li>
-    		</ol>
 
-        <div class="center" id="order_medicine">
 
-          <div class="row">
-              <div class="col-md-3">
-                <div class="how-it-proccess">
-                <img src="../images/presc.png" class="img-responsive" alt="upload">
-                <div style="text-align: center;">
-                  <span>Upload Prescriptions</span>
-                </div>
-              </div>
-              </div>
-              <div class="col-md-3">
-                <div class="how-it-proccess">
-                <img src="../images/order-process.png" class="img-responsive">
-                <div style="text-align: center;">
-                    <span>Pharmacy process the order</span>
-                </div>
-              </div>
-              </div>
-              <div class="col-md-3">
-                <div class="how-it-proccess">
-                <img src="../images/deliver.png" class="img-responsive">
-                <div style="text-align: center;">
-                      <span>Doorstep Delivery</span>
-                </div>
-              </div>
-              </div>
-            </div>
-    <hr>
-    </div>
-  <?php } ?>
     <div class="container">
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Order Medicine</div>

@@ -23,10 +23,16 @@
           <span class="nav-link-text">Appoinments</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ordred Medicine">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Order Medicine">
+        <a class="nav-link" href="order.php?order">
+          <i class="fa fa-fw fa-h-square"></i>
+          <span class="nav-link-text">Order Medicine</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ordered Medicine">
         <a class="nav-link" href="orderedMedicine.php">
-          <i class="fa fa-rocket"></i>
-          <span class="nav-link-text">Ordred Medicine</span>
+          <i class="fa fa-fw fa-medkit"></i>
+          <span class="nav-link-text">Ordered Medicine</span>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Medical History">
