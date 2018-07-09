@@ -1,6 +1,6 @@
 <?php
 	require_once 'core/init.php';
-
+include 'template/includes/head.php';
 	?>
 	<!DOCTYPE html>
 	<html>
@@ -55,28 +55,26 @@
 				}
 				}
 				else{
-					echo "sorry! Failed";
+					echo '<p class="bg-danger text-center">Incorrect Password<br /></p>';
 				}
 			}
 			else{
 				foreach ($validation->errors() as $error) {
 
-					echo $error, '<br />';
+					echo '<p class="bg-danger text-center">'.$error, '<br /></p>';
 				}
 			}
 		}
 	}
 ?>
-
-
-<div class="card">
-<article class="card-body mx-auto" style="max-width: 400px;">
-<a href="register.php" class="float-right btn btn-outline-primary">Sign up</a>
-<h4 class="card-title mb-4 mt-1">Sign in</h4>
+<div class="container">
+<div class="card card-register mx-auto mt-5">
+	<div class="card-header">Login</div>
+<div class="card-body">
 	 <form method="post">
     <div class="form-group">
     	<label>Your email</label>
-        <input name="email" class="form-control" placeholder="Email" type="email">
+        <input name="email" class="form-control" placeholder="Email" type="email" value="<?php echo Input::get('email'); ?>">
     </div> <!-- form-group// -->
     <div class="form-group">
     	<a class="float-right" href="#">Forgot?</a>
@@ -91,10 +89,11 @@
     <div class="form-group">
 				<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 				<input type="submit" value="Log In" class="btn btn-primary btn-block" >
+				<a href="register.php">Don't have an account?</a>
     </div> <!-- form-group// -->
 </form>
 </article>
-</div> <!-- card.// -->
-
-	</body>
-</html>
+</div>
+</div>
+</div><!-- card.// -->
+<?php include 'template/includes/footer.php'; ?>

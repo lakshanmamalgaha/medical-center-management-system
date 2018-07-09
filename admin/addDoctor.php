@@ -3,9 +3,10 @@
 require_once '../core/init.php';
 $user = new User();
 if($user->isLoggedIn()) {
+	$title='Admin : Add Doctor';
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_admin.php';
-
+$db=DB::getInstance();
 		if(Session::exists('success'))
 		{
 			echo '<p class="text-success">' .Session::flash('success').'</p>';
@@ -19,7 +20,7 @@ include BASEURL.'includes/navigation_admin.php';
 					$validate = new Validation();
 					$validation = $validate->check($_POST, array(
 						'fullname'=>array(
-							'required'=>'true',
+							'required'=>true,
 							'min'=>5,
 							'max'=>20
 						),
@@ -31,6 +32,9 @@ include BASEURL.'includes/navigation_admin.php';
 						'password' => array(
 							'required' => true,
 							'min' => 6
+						),
+						'speciality'=>array(
+							'required'=>true
 						),
 
 						'password_again' => array(
@@ -54,6 +58,15 @@ include BASEURL.'includes/navigation_admin.php';
 								'type'=>2
 								));
 
+							$did=$db->get('users',array(
+								'email',
+								'=',
+								Input::get('email')
+							))->first();
+							$db->insert('doctor',array(
+								'd_id'=>$did->id,
+								'speciality'=>Input::get('speciality')
+							));
 							Session::flash('success', 'Successfully added.');
 							Redirect::to('doctor.php');
 
@@ -114,7 +127,27 @@ include BASEURL.'includes/navigation_admin.php';
 		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 		 </div>
         <input name="email" class="form-control" placeholder="Email address" type="email" value="<?php echo escape(Input::get('email')); ?>" autocomplete="off">
-    </div> <!-- form-group// -->
+    </div>
+		<div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-stethoscope"></i> </span>
+		 </div>
+		 <select class="form-control" name="speciality">
+			 <?php $sp=$db->get('speciality',array(
+				 'id',
+				 '>',
+				 0
+			 ))->results(); ?>
+			 <option value=""> Select Speciality</option>
+			 <?php foreach ($sp as $key ) {
+				 ?>
+				 <option value="<?php echo $key->speciality; ?>"><?php echo $key->speciality; ?></option>
+				 <?php
+			 } ?>
+
+
+		 </select>
+	 </div> <!-- form-group// -->
 
     <div class="form-group input-group">
     	<div class="input-group-prepend">

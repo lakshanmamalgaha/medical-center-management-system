@@ -7,35 +7,35 @@
     <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="index.php">
-          <i class="fa fa-fw fa-dashboard"></i>
+          <i class="fa fa-fw fa-user-circle"></i>
           <span class="nav-link-text">Dashboard</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Doctors">
         <a class="nav-link" href="doctor.php">
-          <i class="fa fa-fw fa-table"></i>
+          <i class="fa fa-stethoscope"></i>
           <span class="nav-link-text">Doctors</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Appointments">
         <a class="nav-link" href="appointment.php">
           <i class="fa fa-fw fa-table"></i>
           <span class="nav-link-text">Appoinments</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ordred Medicine">
         <a class="nav-link" href="orderedMedicine.php">
-          <i class="fa fa-fw fa-table"></i>
+          <i class="fa fa-rocket"></i>
           <span class="nav-link-text">Ordred Medicine</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Medical History">
         <a class="nav-link" href="medicalHistory.php">
-          <i class="fa fa-fw fa-table"></i>
+          <i class="fa fa-user-md"></i>
           <span class="nav-link-text">Medical History</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-wrench"></i>
           <span class="nav-link-text">Settings</span>

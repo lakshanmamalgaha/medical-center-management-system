@@ -151,6 +151,36 @@ class DB{
 		return false;
 	}
 
+	public function search($searchContent, $max){
+
+        $searchContent = "%".$searchContent."%";
+
+    if ($max == 0){
+      $searchQuery = "SELECT * FROM users WHERE fullname LIKE ?";
+    }else{
+      $searchQuery = "SELECT * FROM users WHERE fullname LIKE ? LIMIT $max";
+    }
+
+    try{
+       $stmt = $this->_pdo->prepare($searchQuery); //querys db for products that contain the query in the title
+       $stmt->bindParam(1, $searchContent);
+       //$stmt->execute();
+			 if($this->$stmt->execute())
+ 			{
+ 				$this->_results		= $this->_query->fetchAll(PDO::FETCH_OBJ);
+ 				$this->_count 		= $this->_query->rowCount();
+ 			}
+ 			else
+ 			{
+ 				$this->_error = true;
+ 			}
+    }catch(PDOException $e) {
+       echo $e->getMessage();
+    }
+
+
+	}
+
 	public function results()
 	{
 		return $this->_results;
