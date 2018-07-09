@@ -30,7 +30,7 @@ $sq=$db->query("SELECT * FROM {$table} WHERE type={$type} AND fullname LIKE ?",a
 $sr=$sq->results();
 $sc=$sq->count();
 //$sq->execute()
-var_dump($sr);
+//var_dump($sr);
 if($sc==0){
   echo 'No Search Results Found';
 }
