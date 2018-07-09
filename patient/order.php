@@ -175,7 +175,7 @@ if(isset($_GET['order'])){
      <div class="" id="order_medicine">
        <form class="form" method="post" enctype="multipart/form-data">
          <div class="form-group">
-           <label for="prescription">Prescription*:</label>
+           <label for="prescription">Prescription*(Upload an image of the prescription):</label>
            <input type="file" name="prescription" class="form-control" required>
 
          </div>
