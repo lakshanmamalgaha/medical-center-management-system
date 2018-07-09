@@ -44,7 +44,7 @@ if(isset($_GET['order'])){
 
                 $upload_name=md5(microtime()).'.'.$file_ext;
                 $upload_location=BASEURL.'prescription/'.$upload_name;
-                $prescription_path='/Myp/prescription/'.$upload_name;
+                $prescription_path='/myp-master/prescription/'.$upload_name;
 
                 if (!in_array($file_ext,$allowed)) {
                   $error_array[].='The file extension must be png,jpg,jpeg,gif';
