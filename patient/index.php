@@ -25,8 +25,6 @@ if(Session::exists('success'))
 
 ?>
 	<p>Hello, <?php echo escape($user->data()->fullname); ?></p>
-
-
 	</div>
 </div>
 <?php

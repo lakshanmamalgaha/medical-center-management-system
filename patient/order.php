@@ -71,7 +71,7 @@ if(isset($_GET['order'])){
                 )
               );
               Session::flash('success', 'Medicine Order Successful');
-      				Redirect::to('orderedMedicine.php');
+      				Redirect::to('orderedMedicine.php?order=<?php echo $user->data()->id; ?>');
 
               }
 
