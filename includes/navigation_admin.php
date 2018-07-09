@@ -29,6 +29,12 @@
           <span class="nav-link-text">Pharmacists</span>
         </a>
       </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Delivery Persons">
+        <a class="nav-link" href="deliveryperson.php">
+          <i class="fa fa-fw fa-table"></i>
+          <span class="nav-link-text">Delivery Persons</span>
+        </a>
+      </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Appointments">
         <a class="nav-link" href="appointment.php">
           <i class="fa fa-fw fa-table"></i>

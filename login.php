@@ -53,6 +53,10 @@
 					Session::flash('home', 'Successfully Logged pharmacist.');
 					Redirect::to('pharmacist/index.php');
 				}
+				elseif ($user->userType()==4) {
+					Session::flash('home', 'Successfully Logged pharmacist.');
+					Redirect::to('deliveryperson/index.php');
+				}
 				}
 				else{
 					echo "sorry! Failed";
