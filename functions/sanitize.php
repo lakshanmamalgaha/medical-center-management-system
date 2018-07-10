@@ -12,3 +12,9 @@ function escape($string)
 function convertInt($value){
 	return (int)$value;
 }
+function date_fo($date){
+  return date("M d, Y ",strtotime($date));
+}
+function date_fo_time($date){
+  return date("M d, Y h:i A",strtotime($date));
+}

@@ -32,7 +32,7 @@ include BASEURL.'includes/navigation_patient.php';
 </hr>
 	<div class="">
 		<hr>
-  <form class=""method="post">
+  <form class=" " action="search.php" method="post">
 		<div class="form-group">
             <div class="form-row">
               <div class="col-md-8">
@@ -40,7 +40,8 @@ include BASEURL.'includes/navigation_patient.php';
                 <input class="form-control" id="search" type="text" aria-describedby="nameHelp" placeholder="Search a doctor" name="search">
               </div>
               <div class="col-md-2">
-
+								<input  hidden type="text" name="type" value="2">
+								<input hidden type="text" name="table" value="users">
                 <input class="form-control btn btn-info btn-block" type="submit" aria-describedby="nameHelp" placeholder="Search" value="Search">
               </div>
             </div>

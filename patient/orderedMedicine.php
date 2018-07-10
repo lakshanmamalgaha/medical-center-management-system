@@ -3,23 +3,24 @@
 require_once '../core/init.php';
 $user = new User();
 if($user->isLoggedIn()) {
+	$title='Ordered Medicine';
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_patient.php';
-?>
-
-<div class="content-wrapper">
-	<div class="container-fluid">
-		<!-- Breadcrumbs-->
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item">
-				<a href="index.php">GoodLife</a>
-			</li>
-      <li class="breadcrumb-item active">Ordered Medicine</li>
-		</ol>
-    <?php if(Session::exists('success'))
+ if(Session::exists('success'))
     {
     	echo '<p class="text-success">' .Session::flash('success').'</p>';
     } ?>
+
+
+		<div class="content-wrapper">
+			<div class="container-fluid">
+				<!-- Breadcrumbs-->
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="index.php">GoodLife</a>
+					</li>
+		      <li class="breadcrumb-item active">Ordered Medicine</li>
+				</ol>
 <div class="">
   <a class="btn btn-success btn-block" href="order.php?order=<?php echo $user->data()->id; ?>">Order</a>
   <hr>

@@ -3,27 +3,70 @@
 require_once '../core/init.php';
 $user = new User();
 if($user->isLoggedIn()) {
+  $title='Patient : Order';
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_patient.php';
+?>
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.php">GoodLife</a>
+      </li>
+      <li class="breadcrumb-item active">Order Medicine</li>
+    </ol>
+
+    <div class="center" id="order_medicine">
+
+      <div class="row">
+          <div class="col-md-3">
+            <div class="how-it-proccess">
+            <img src="../images/presc.png" class="img-responsive" alt="upload">
+            <div style="text-align: center;">
+              <span>Upload Prescriptions</span>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-3">
+            <div class="how-it-proccess">
+            <img src="../images/order-process.png" class="img-responsive">
+            <div style="text-align: center;">
+                <span>Pharmacy process the order</span>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-3">
+            <div class="how-it-proccess">
+            <img src="../images/deliver.png" class="img-responsive">
+            <div style="text-align: center;">
+                  <span>Doorstep Delivery</span>
+            </div>
+          </div>
+          </div>
+        </div>
+<hr>
+</div>
+
+<?php
 if(isset($_GET['order'])){
   $orderID=(int)$_GET['order'];
-  if(Input::exists())
-  {
-  		$validate = new Validation();
-  		$validation = $validate->check($_POST, array(
-  			'delivery_address'	=> array(
-  				'required'	=> true
-  				),
-  			'note'		=> array(
-  				'required'	=> true
+  $error_array=array();
 
-  				)
-  		));
 
-  		if($validation->passed()){
-        $error_array=array();
+  if(isset($_POST['submit'])){
+    $prescription_path='';
+    $delivery_address=escape($_POST['delivery_address']);
+    $note=escape($_POST['note']);
+
+  if(empty($_POST['delivery_address'])){
+    $error_array[].='Delivery Address must be provided.';
+    //var_dump($error_array);
+
+  }
         if (isset($_FILES["prescription"]) && $_FILES["prescription"]["error"] == 0) {
             $photo=$_FILES['prescription'];
+            //var_dump($photo);
             $photo_name=$photo['name'];
             $photo_name_array=explode('.',$photo_name);
             $file_name=$photo_name_array[0];
@@ -33,7 +76,7 @@ if(isset($_GET['order'])){
                 $mime=explode('/',$photo['type']);
                 $mime_type=$mime[0];
                 if ($mime_type != 'image') {
-                  $errors[].='File must be an image';
+                  $error_array[].='File must be an image';
                 }else {
                   $mime_ext=$mime[1];
                 }
@@ -52,10 +95,12 @@ if(isset($_GET['order'])){
                 if ($file_size> 5000000) {
                   $error_array[].='File must be under 5MB';
                 }
-
+                //var_dump($error_array);
           }
 
-          }
+        }else{
+          $error_array[].='Prescription must be provided';
+        }
           if(empty($error_array)){
                 if (isset($_FILES['prescription']) && $_FILES["prescription"]["error"] == 0) {
                     move_uploaded_file($tmp_location,$upload_location);
@@ -73,101 +118,21 @@ if(isset($_GET['order'])){
               Session::flash('success', 'Medicine Order Successful');
       				Redirect::to('orderedMedicine.php?order=<?php echo $user->data()->id; ?>');
 
-              }
 
-  			}else {
-          ?>
-          <div class="content-wrapper">
-          	<div class="container-fluid">
-          		<!-- Breadcrumbs-->
-          		<ol class="breadcrumb">
-          			<li class="breadcrumb-item">
-          				<a href="index.php">GoodLife</a>
-          			</li>
-                <li class="breadcrumb-item active">Order Medicine</li>
-          		</ol>
+            }else{
 
-              <div class="center" id="order_medicine">
 
-                <div class="row">
-                    <div class="col-md-3">
-                      <div class="how-it-proccess">
-                      <img src="../images/presc.png" class="img-responsive" alt="upload">
-                      <div style="text-align: center;">
-                        <span>Upload Prescriptions</span>
-                      </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="how-it-proccess">
-                      <img src="../images/order-process.png" class="img-responsive">
-                      <div style="text-align: center;">
-                          <span>Pharmacy process the order</span>
-                      </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="how-it-proccess">
-                      <img src="../images/deliver.png" class="img-responsive">
-                      <div style="text-align: center;">
-                            <span>Doorstep Delivery</span>
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-          <hr>
-          </div>
-          <?php
-
-  			foreach ($validation->errors() as $error) {
-  				echo $error, '<br>';
-  			}
+        foreach ($error_array as $err) {
+          echo $err, '<br>';
+        }
   		}
 
 
-  }else {
+
+}
     ?>
-    <div class="content-wrapper">
-    	<div class="container-fluid">
-    		<!-- Breadcrumbs-->
-    		<ol class="breadcrumb">
-    			<li class="breadcrumb-item">
-    				<a href="index.php">GoodLife</a>
-    			</li>
-          <li class="breadcrumb-item active">Order Medicine</li>
-    		</ol>
 
-        <div class="center" id="order_medicine">
 
-          <div class="row">
-              <div class="col-md-3">
-                <div class="how-it-proccess">
-                <img src="../images/presc.png" class="img-responsive" alt="upload">
-                <div style="text-align: center;">
-                  <span>Upload Prescriptions</span>
-                </div>
-              </div>
-              </div>
-              <div class="col-md-3">
-                <div class="how-it-proccess">
-                <img src="../images/order-process.png" class="img-responsive">
-                <div style="text-align: center;">
-                    <span>Pharmacy process the order</span>
-                </div>
-              </div>
-              </div>
-              <div class="col-md-3">
-                <div class="how-it-proccess">
-                <img src="../images/deliver.png" class="img-responsive">
-                <div style="text-align: center;">
-                      <span>Doorstep Delivery</span>
-                </div>
-              </div>
-              </div>
-            </div>
-    <hr>
-    </div>
-  <?php } ?>
     <div class="container">
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Order Medicine</div>
