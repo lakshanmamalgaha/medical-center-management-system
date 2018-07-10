@@ -128,7 +128,7 @@ if($_GET['channel']){
               <div class="form-row">
                 <div class="col-md-6">
                   <label for="date">Date</label>
-                  <input class="form-control" name="booking_date" type="date" aria-describedby="nameHelp" placeholder="Select a date">
+                  <input class="form-control" name="booking_date" type="date" aria-describedby="nameHelp" placeholder="Select a date" value="<?php echo escape(Input::get('booking_date')); ?>">
                 </div>
                 <div class="col-md-6">
                   <label for="time">Time</label>
@@ -164,5 +164,4 @@ include BASEURL.'includes/footer.php';
 }else{
 	Redirect::to('../login.php');
 }
-
 ?>

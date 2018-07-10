@@ -87,7 +87,7 @@ if(isset($_GET['order'])){
 
                 $upload_name=md5(microtime()).'.'.$file_ext;
                 $upload_location=BASEURL.'prescription/'.$upload_name;
-                $prescription_path='/myp-master/prescription/'.$upload_name;
+                $prescription_path='/Myp/prescription/'.$upload_name;
 
                 if (!in_array($file_ext,$allowed)) {
                   $error_array[].='The file extension must be png,jpg,jpeg,gif';
@@ -116,7 +116,7 @@ if(isset($_GET['order'])){
                 )
               );
               Session::flash('success', 'Medicine Order Successful');
-      				Redirect::to('orderedMedicine.php');
+      				Redirect::to('orderedMedicine.php?order=<?php echo $user->data()->id; ?>');
 
 
             }else{
@@ -140,18 +140,18 @@ if(isset($_GET['order'])){
      <div class="" id="order_medicine">
        <form class="form" method="post" enctype="multipart/form-data">
          <div class="form-group">
-           <label for="prescription">Prescription*:</label>
-           <input type="file" name="prescription" class="form-control" >
+           <label for="prescription">Prescription*(Upload an image of the prescription):</label>
+           <input type="file" name="prescription" class="form-control" required>
 
          </div>
          <div class="form-group">
            <label for="delivery_address">Delivery Address</label>
-           <input type="text" name="delivery_address" cols="3" value="" class="form-control">
+           <input type="text" name="delivery_address" cols="3" value="<?php echo escape(Input::get('delivery_address')); ?>" class="form-control">
 
          </div>
          <div class="form-group">
            <label for="note">Note</label>
-           <textarea name="note" rows="4" cols="80" class="form-control" value=""></textarea>
+           <textarea name="note" rows="4" cols="80" class="form-control" value=""><?php echo escape(Input::get('note')); ?></textarea>
 
          </div>
          <div class="form-group col-md-3 pull-right">

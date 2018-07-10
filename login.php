@@ -53,6 +53,10 @@ include 'template/includes/head.php';
 					Session::flash('home', 'Successfully Logged pharmacist.');
 					Redirect::to('pharmacist/index.php');
 				}
+				elseif ($user->userType()==4) {
+					Session::flash('home', 'Successfully Logged Delivery Person.');
+					Redirect::to('deliveryperson/index.php');
+				}
 				}
 				else{
 					echo '<p class="bg-danger text-center">Incorrect Password<br /></p>';

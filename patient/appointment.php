@@ -6,24 +6,23 @@ if($user->isLoggedIn()) {
 	$title='Patient:Appointments';
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_patient.php';
-?>
 
-<div class="content-wrapper">
-	<div class="container-fluid">
-		<!-- Breadcrumbs-->
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item">
-				<a href="index.php">GoodLife</a>
-			</li>
-      <li class="breadcrumb-item active">Appointments</li>
-		</ol>
-		<?php
-		if(Session::exists('success'))
+	if(Session::exists('success'))
 		{
 			echo '<p class="text-success">' .Session::flash('success').'</p>';
 		}
 		 ?>
 
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.php">GoodLife</a>
+      </li>
+      <li class="breadcrumb-item active">Appointments</li>
+    </ol>
+    
   <div>
     <table class="table text-center">
       <thead>

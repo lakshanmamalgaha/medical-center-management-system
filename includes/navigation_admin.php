@@ -13,31 +13,37 @@
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Patients">
         <a class="nav-link" href="patient.php">
-          <i class="fa fa-fw fa-users"></i>
+          <i class="fa fa-fw fa-area-chart"></i>
           <span class="nav-link-text">Patients</span>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Doctors">
         <a class="nav-link" href="doctor.php">
-          <i class="fa fa-fw fa-stethoscope"></i>
+          <i class="fa fa-fw fa-table"></i>
           <span class="nav-link-text">Doctors</span>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pharmacists">
         <a class="nav-link" href="pharmacist.php">
-          <i class="fa fa-fw fa-user-circle-o"></i>
-          <span class="nav-link-text">Pharmacist</span>
+          <i class="fa fa-fw fa-table"></i>
+          <span class="nav-link-text">Pharmacists</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Appoinments">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Delivery Persons">
+        <a class="nav-link" href="deliveryperson.php">
+          <i class="fa fa-fw fa-table"></i>
+          <span class="nav-link-text">Delivery Persons</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Appointments">
         <a class="nav-link" href="appointment.php">
           <i class="fa fa-fw fa-table"></i>
-          <span class="nav-link-text">Appoinments</span>
+          <span class="nav-link-text">Appointments</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="ordered Medicine">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ordered Medicine">
         <a class="nav-link" href="orderedMedicine.php">
-          <i class="fa fa-fw fa-h-square"></i>
+          <i class="fa fa-fw fa-table"></i>
           <span class="nav-link-text">Ordred Medicine</span>
         </a>
       </li>

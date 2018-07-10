@@ -7,37 +7,37 @@
     <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="index.php">
-          <i class="fa fa-fw fa-user-circle"></i>
+          <i class="fa fa-fw fa-dashboard"></i>
           <span class="nav-link-text">Dashboard</span>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Doctors">
         <a class="nav-link" href="doctor.php">
-          <i class="fa fa-stethoscope"></i>
+          <i class="fa fa-fw fa-table"></i>
           <span class="nav-link-text">Doctors</span>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Appointments">
         <a class="nav-link" href="appointment.php">
           <i class="fa fa-fw fa-table"></i>
-          <span class="nav-link-text">Appoinments</span>
+          <span class="nav-link-text">Appointments</span>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Order Medicine">
-        <a class="nav-link" href="order.php?order">
-          <i class="fa fa-fw fa-h-square"></i>
+        <a class="nav-link" href="order.php?order=<?php echo $user->data()->id; ?>">
+          <i class="fa fa-fw fa-table"></i>
           <span class="nav-link-text">Order Medicine</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ordered Medicine">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ordered Medicne">
         <a class="nav-link" href="orderedMedicine.php">
-          <i class="fa fa-fw fa-medkit"></i>
+          <i class="fa fa-fw fa-table"></i>
           <span class="nav-link-text">Ordered Medicine</span>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Medical History">
         <a class="nav-link" href="medicalHistory.php">
-          <i class="fa fa-user-md"></i>
+          <i class="fa fa-fw fa-table"></i>
           <span class="nav-link-text">Medical History</span>
         </a>
       </li>
