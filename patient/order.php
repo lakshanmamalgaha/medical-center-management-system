@@ -116,7 +116,7 @@ if(isset($_GET['order'])){
                 )
               );
               Session::flash('success', 'Medicine Order Successful');
-      				Redirect::to('orderedMedicine.php');
+      				Redirect::to('orderedMedicine.php?order=<?php echo $user->data()->id; ?>');
 
 
             }else{
@@ -146,7 +146,7 @@ if(isset($_GET['order'])){
          </div>
          <div class="form-group">
            <label for="delivery_address">Delivery Address</label>
-           <input type="text" name="delivery_address" cols="3" value="" class="form-control">
+           <input type="text" name="delivery_address" cols="3" value="<?php echo escape(Input::get('delivery_address')); ?>" class="form-control">
 
          </div>
          <div class="form-group">

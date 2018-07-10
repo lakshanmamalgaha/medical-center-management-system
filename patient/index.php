@@ -18,6 +18,7 @@ include BASEURL.'includes/navigation_patient.php';
 			<li class="breadcrumb-item active">My Dashboard</li>
 		</ol>
 
+
 		<?php
 		if(Session::exists('success'))
 		{
@@ -102,6 +103,7 @@ include BASEURL.'includes/navigation_patient.php';
 		            </div>
 
 		      </div>
+
 
 
 

@@ -20,10 +20,11 @@
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Appointments">
         <a class="nav-link" href="appointment.php">
           <i class="fa fa-fw fa-table"></i>
-          <span class="nav-link-text">Appoinments</span>
+          <span class="nav-link-text">Appointments</span>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Order Medicine">
+        
         <a class="nav-link" href="order.php?order">
           <i class="fa fa-fw fa-h-square"></i>
           <span class="nav-link-text">Order Medicine</span>
@@ -32,6 +33,7 @@
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ordered Medicine">
         <a class="nav-link" href="orderedMedicine.php">
           <i class="fa fa-fw fa-medkit"></i>
+
           <span class="nav-link-text">Ordered Medicine</span>
         </a>
       </li>

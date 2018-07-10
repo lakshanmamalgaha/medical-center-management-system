@@ -25,6 +25,7 @@
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pharmacists">
         <a class="nav-link" href="pharmacist.php">
+
           <i class="fa fa-fw fa-user-circle-o"></i>
           <span class="nav-link-text">Pharmacist</span>
         </a>
@@ -32,10 +33,14 @@
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Appoinments">
         <a class="nav-link" href="appointment.php">
           <i class="fa fa-fw fa-table"></i>
-          <span class="nav-link-text">Appoinments</span>
+          <span class="nav-link-text">Appointments</span>
         </a>
       </li>
+
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ordered Medicine">
+
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="ordered Medicine">
+
         <a class="nav-link" href="orderedMedicine.php">
           <i class="fa fa-fw fa-h-square"></i>
           <span class="nav-link-text">Ordred Medicine</span>
