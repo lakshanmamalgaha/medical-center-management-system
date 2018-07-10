@@ -8,17 +8,22 @@
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="index.php">
           <i class="fa fa-fw fa-dashboard"></i>
-          <span class="nav-link-text">Dashboard</span>
+          <span class="nav-link-text">Stock low items</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Stocks">
         <a class="nav-link" href="stock.php">
           <i class="fa fa-fw fa-area-chart"></i>
           <span class="nav-link-text">Stocks</span>
         </a>
       </li>
-
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Approve Orders">
+        <a class="nav-link" href="approveorders.php">
+          <i class="fa fa-fw fa-area-chart"></i>
+          <span class="nav-link-text">Approve Orders</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Settings">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-wrench"></i>
           <span class="nav-link-text">Settings</span>

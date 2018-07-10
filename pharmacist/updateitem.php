@@ -32,7 +32,7 @@ if(Session::exists('success'))
 					if(Input::exists()){
 								if(Token::check(Input::get('token')) )
 						{
-							$validate = new Validation();
+							/*$validate = new Validation();
 							$validation = $validate->check($_POST, array(
 								'packSize' => array(
 									'required' => true
@@ -56,7 +56,7 @@ if(Session::exists('success'))
 								)
 							));
 
-							if($validate->passed()){
+							if($validate->passed()){*/
 								try{
 
 									$db->update('pharmacy',$uid,array(
@@ -74,12 +74,12 @@ if(Session::exists('success'))
 								catch(Exception $e){
 									die($e->getMessage());
 								}
-							}
+							/*}
 							else{
 								foreach ($validate->errors() as $error) {
 									echo $error, '<br />';
 								}
-							}
+							}*/
 						}
 					}
 
@@ -99,29 +99,30 @@ if(Session::exists('success'))
    			<label>Code</label>
    			<input type="text" class="form-control" readonly name="code" value="<?php echo $item->code; ?>" >
    		</div>
+   		
    		<div class="form-group">
    			<label>Description</label>
-   			<input type="text"  class="form-control" name="description" value="<?php echo $item->description; ?>" >
+   			<input type="text"  class="form-control" name="description" value="<?php echo Input::get('description'); ?>" required>
    		</div>
    		<div class="form-group">
    			<label>Pack Size</label>
-   			<input type="text"  class="form-control" name="packSize" value="<?php echo $item->packsize; ?>" >
+   			<input type="number" min=0 class="form-control" name="packSize" value="<?php echo Input::get('packSize'); ?>" required>
    		</div>
    		<div class="form-group">
-   			<label>Unit price</label>
-   			<input type="text" class="form-control" name="unitPrice" value="<?php echo $item->unit_price; ?>" >
+   			<label>Unit price (Rs.)</label>
+   			<input type="number" min=0 class="form-control" name="unitPrice" value="<?php echo Input::get('unitPrice'); ?>" required>
    		</div>
    		<div class="form-group">
    			<label>Active Grades</label>
-   			<input type="text" class="form-control" name="activeGrades" value="<?php echo $item->active_grades; ?>" >
+   			<input type="text" class="form-control" name="activeGrades" value="<?php echo Input::get('activeGrades'); ?>" required>
    		</div>
    		<div class="form-group">
-   			<label>Sup. Code</label>
-   			<input type="text" class="form-control" name="sup_code" value="<?php echo $item->sup_code; ?>" >
+   			<label>Supplier Code</label>
+   			<input type="text" maxlength=5 class="form-control" name="sup_code" value="<?php echo Input::get('sup_code'); ?>" required>
    		</div>
    		<div class="form-group">
    			<label>Supplier</label>
-   			<input type="text" class="form-control" name="supplier" value="<?php echo $item->supplier; ?>">
+   			<input type="text" class="form-control" name="supplier" value="<?php echo Input::get('supplier'); ?>" required>
    		</div>
 
    		<div class="form-group col-md">

@@ -2,6 +2,7 @@
 
 require_once '../core/init.php';
 $user = new User();
+$errors=array();
 if($user->isLoggedIn()) {
 	$title='Pharmacist: Add Item';
 include BASEURL.'includes/head.php';
@@ -31,7 +32,7 @@ if(Session::exists('success'))
 					if(Input::exists()){
 								if(Token::check(Input::get('token')) )
 						{
-							$validate = new Validation();
+							/*$validate = new Validation();
 							$validation = $validate->check($_POST, array(
 								'code'=>array(
 									'required'=>true,
@@ -63,8 +64,36 @@ if(Session::exists('success'))
 									'required'=>true,
 									'characters'=>true
 								)
-							));
-							if($validate->passed()){
+							));*/
+							/*$required=array('code','description','packSize','unitPrice','activeGrades','sup_code','supplier');
+								  foreach ($required as $key ) {
+								    if (empty($_POST[$key])) {
+								      $errors[].=$key.' is required';
+								    }
+								}
+							/*$characters=array('description','supplier');
+								foreach ($characters as $key) {
+									$strings="/^[A-Za-z ]+$/";
+									if(!(preg_match($strings, $key))){
+								    	$errors[].=$key.' should contain only characters';
+								    }
+								}
+								    
+							$integer=array('code','packSize','unitPrice','activeGrades');
+								foreach ($integer as $key ) {
+									$num="/^[0-9 ]+$/";
+									if(!(preg_match($num, $key))){
+										$errors[].=$key.' should contain only numbers';
+									}# code...
+								}*/
+							    /*if(!empty($errors)){
+							    	foreach($errors as $error){
+							    		echo ($error)."</br>";	
+							    	}
+									
+								}*/
+
+							/*if(empty($errors)){*/
 								try{
 									$db=DB::getInstance();
 									$db->insert('pharmacy',array(
@@ -83,12 +112,12 @@ if(Session::exists('success'))
 								catch(Exception $e){
 									die($e->getMessage());
 								}
-							}
-							else{
+							//}
+							/*else{
 								foreach ($validate->errors() as $error) {
 									echo $error, '<br />';
 								}
-							}
+							}*/
 						}
 					}
 					?>
@@ -100,35 +129,35 @@ if(Session::exists('success'))
 			       <form class="form" method="post" enctype="multipart/form-data">
 							 <div class="form-group">
    			<label>Code</label>
-   			<input type="text" class="form-control" name="code" value="<?php echo Input::get('code'); ?>" >
+   			<input type="number" min= 0 max=400 class="form-control" name="code" value="<?php echo Input::get('code'); ?>" required>
    		</div>
    		<div class="form-group">
    			<label>Description</label>
-   			<input type="text"  class="form-control" name="description" value="<?php echo Input::get('description'); ?>" >
+   			<input type="text"  class="form-control" name="description" value="<?php echo Input::get('description'); ?>" required>
    		</div>
    		<div class="form-group">
    			<label>Pack Size</label>
-   			<input type="text"  class="form-control" name="packSize" value="<?php echo Input::get('packSize'); ?>" >
+   			<input type="number" min=0 class="form-control" name="packSize" value="<?php echo Input::get('packSize'); ?>" required>
    		</div>
    		<div class="form-group">
-   			<label>Unit price</label>
-   			<input type="text" class="form-control" name="unitPrice" value="<?php echo Input::get('unitPrice'); ?>" >
+   			<label>Unit price (Rs.)</label>
+   			<input type="number" min=0 class="form-control" name="unitPrice" value="<?php echo Input::get('unitPrice'); ?>" required>
    		</div>
    		<div class="form-group">
    			<label>Active Grades</label>
-   			<input type="text" class="form-control" name="activeGrades" value="<?php echo Input::get('activeGrades'); ?>" >
+   			<input type="text" class="form-control" name="activeGrades" value="<?php echo Input::get('activeGrades'); ?>" required>
    		</div>
    		<div class="form-group">
    			<label>Supplier Code</label>
-   			<input type="text" class="form-control" name="sup_code" value="<?php echo Input::get('sup_code'); ?>" >
+   			<input type="text" maxlength=5 class="form-control" name="sup_code" value="<?php echo Input::get('sup_code'); ?>" required>
    		</div>
    		<div class="form-group">
    			<label>Supplier</label>
-   			<input type="text" class="form-control" name="supplier" value="<?php echo Input::get('supplier'); ?>">
+   			<input type="text" class="form-control" name="supplier" value="<?php echo Input::get('supplier'); ?>" required>
    		</div>
 
    		<div class="form-group col-md">
-				<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+				<input type="hidden" name="token" value="<?php echo Token::generate(); ?>" >
    			<input type="submit" name="submit" value="Add" class="form-control btn btn-primary">
    		</div>
 
