@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-define('BASEURL',$_SERVER['DOCUMENT_ROOT'].'/myp/');
+define('BASEURL',$_SERVER['DOCUMENT_ROOT'].'/myp-1/');
 // Setting up variables
 $GLOBALS['config'] = array(
 	'mysql'	=> array(

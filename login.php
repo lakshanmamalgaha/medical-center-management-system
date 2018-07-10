@@ -54,7 +54,7 @@
 					Redirect::to('pharmacist/index.php');
 				}
 				elseif ($user->userType()==4) {
-					Session::flash('home', 'Successfully Logged pharmacist.');
+					Session::flash('home', 'Successfully Logged Delivery Person.');
 					Redirect::to('deliveryperson/index.php');
 				}
 				}
