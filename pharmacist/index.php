@@ -23,6 +23,7 @@ include BASEURL.'includes/navigation_pharmacist.php';
 		{
 			echo '<p class="text-success">' .Session::flash('success').'</p>';
 		} ?>
+<<<<<<< HEAD
 
 		<?php 
 			$db=DB::getInstance();
@@ -125,6 +126,9 @@ include BASEURL.'includes/navigation_pharmacist.php';
 		
 
 
+=======
+		<p>Hello, <?php echo escape($user->data()->fullname); ?></p>
+>>>>>>> ba62090cb5c1fea09bcb025d9731802a4631b28c
 	</div>
 </div>
 <?php

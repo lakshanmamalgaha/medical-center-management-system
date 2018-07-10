@@ -60,6 +60,7 @@ if (count($appD)>0){ ?>
 	} else {
 		echo "<h2 style='color:red;'>Not available</h2>";
 	} 
+<<<<<<< HEAD
 	?>
 </table>
 </div>
@@ -72,3 +73,9 @@ include BASEURL.'includes/footer.php';
 }
 
 ?>
+=======
+} 
+	?>
+</table>
+</div>
+>>>>>>> ba62090cb5c1fea09bcb025d9731802a4631b28c

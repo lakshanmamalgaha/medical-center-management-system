@@ -31,7 +31,7 @@ if(Session::exists('success'))
       <th class="text-center">Patient Name</th>
       <th class="text-center">Date</th>
       <th class="text-center"></th>
-    
+
 
       </tr>
     </thead>
@@ -55,7 +55,7 @@ if(Session::exists('success'))
         <tr>
         <td> <?php echo $app->id; ?> </td>
         <td> <?php echo $pname->first()->fullname; ?> </td>
-        <td> <?php echo $app->date; ?> </td>
+        <td> <?php echo date_fo_time($app->date); ?> </td>
         <?php
           $start_date=$app->date;
           $expire=strtotime($start_date);
