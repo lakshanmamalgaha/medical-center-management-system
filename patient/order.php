@@ -51,23 +51,22 @@ include BASEURL.'includes/navigation_patient.php';
 <?php
 if(isset($_GET['order'])){
   $orderID=(int)$_GET['order'];
-  if(Input::exists())
-  {
-  		$validate = new Validation();
-  		$validation = $validate->check($_POST, array(
-  			'delivery_address'	=> array(
-  				'required'	=> true
-  				),
-  			'note'		=> array(
-  				'required'	=> true
+  $error_array=array();
 
-  				)
-  		));
 
-  		if($validation->passed()){
-        $error_array=array();
+  if(isset($_POST['submit'])){
+    $prescription_path='';
+    $delivery_address=escape($_POST['delivery_address']);
+    $note=escape($_POST['note']);
+
+  if(empty($_POST['delivery_address'])){
+    $error_array[].='Delivery Address must be provided.';
+    //var_dump($error_array);
+
+  }
         if (isset($_FILES["prescription"]) && $_FILES["prescription"]["error"] == 0) {
             $photo=$_FILES['prescription'];
+            //var_dump($photo);
             $photo_name=$photo['name'];
             $photo_name_array=explode('.',$photo_name);
             $file_name=$photo_name_array[0];
@@ -77,7 +76,7 @@ if(isset($_GET['order'])){
                 $mime=explode('/',$photo['type']);
                 $mime_type=$mime[0];
                 if ($mime_type != 'image') {
-                  $errors[].='File must be an image';
+                  $error_array[].='File must be an image';
                 }else {
                   $mime_ext=$mime[1];
                 }
@@ -96,10 +95,12 @@ if(isset($_GET['order'])){
                 if ($file_size> 5000000) {
                   $error_array[].='File must be under 5MB';
                 }
-
+                //var_dump($error_array);
           }
 
-          }
+        }else{
+          $error_array[].='Prescription must be provided';
+        }
           if(empty($error_array)){
                 if (isset($_FILES['prescription']) && $_FILES["prescription"]["error"] == 0) {
                     move_uploaded_file($tmp_location,$upload_location);
@@ -117,16 +118,18 @@ if(isset($_GET['order'])){
               Session::flash('success', 'Medicine Order Successful');
       				Redirect::to('orderedMedicine.php');
 
-              }
 
-  			}else {
-  			foreach ($validation->errors() as $error) {
-  				echo $error, '<br>';
-  			}
+            }else{
+
+
+        foreach ($error_array as $err) {
+          echo $err, '<br>';
+        }
   		}
 
 
-  }
+
+}
     ?>
 
 
