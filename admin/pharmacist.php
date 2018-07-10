@@ -31,20 +31,6 @@ include BASEURL.'includes/navigation_admin.php';
 </hr>
 	<div class="">
 		<hr>
-  <form class=""method="post">
-		<div class="form-group">
-            <div class="form-row">
-              <div class="col-md-8">
-
-                <input class="form-control" id="search" type="text" aria-describedby="nameHelp" placeholder="Search a pharmacist" name="search">
-              </div>
-              <div class="col-md-2">
-
-                <input class="form-control btn btn-info btn-block" type="submit" aria-describedby="nameHelp" placeholder="Search" value="Search">
-              </div>
-            </div>
-          </div>
-  </form>
 
  <hr>
 
@@ -71,7 +57,7 @@ include BASEURL.'includes/navigation_admin.php';
                   <td><?php echo $key->id; ?></td>
                  <td><?php echo $key->fullname; ?></td>
                  <td><?php echo $key->email; ?></td>
-                 <td><?php echo $key->joined; ?></td>
+                 <td><?php echo date_fo($key->joined); ?></td>
             </tr><?php
 
 						}

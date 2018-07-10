@@ -6,7 +6,21 @@ if($user->isLoggedIn()) {
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_admin.php';
 
+$db=DB::getInstance();
+if (isset($_GET['delete'])) {
+	$did=(int)$_GET['delete'];
+	$db->delete('users',array(
+		'id',
+		'=',
+		$did
+	));
+	Session::flash('success', 'Successfully deleted.');
+	Redirect::to('doctor.php');
 
+}
+{
+	echo '<p class="text-success">' .Session::flash('success').'</p>';
+}
 
 
 	?>
@@ -43,7 +57,8 @@ include BASEURL.'includes/navigation_admin.php';
                 <input class="form-control" id="search" type="text" aria-describedby="nameHelp" placeholder="Search a doctor" name="search">
               </div>
               <div class="col-md-2">
-
+								<input  hidden type="text" name="type" value="2">
+								<input hidden type="text" name="table" value="users">
                 <input class="form-control btn btn-info btn-block" type="submit" aria-describedby="nameHelp" placeholder="Search" value="Search">
               </div>
             </div>
@@ -57,28 +72,71 @@ include BASEURL.'includes/navigation_admin.php';
 	 <table class="table table-striped text-center" >
 		 <thead class="text-center">
 			 <tr class="text-center bg-info">
-			 <th>ID</th>
+			 <th>Reg No</th>
 			 <th>Name</th>
 			 <th>Email</th>
+			 <th>Speciality</th>
 			 <th>Join Date</th>
 			 </tr>
 		 </thead>
 		 <tbody>
+			 <?php if(isset($_POST['search'])){
+				 $table=$_POST['table'];
+			   $type=$_POST['type'];
+			   $search=$_POST['search'];
+				 $sq=$db->query("SELECT * FROM {$table} WHERE type={$type} AND fullname LIKE ?",array(
+				   '%'.$search.'%'
+				 ));
+				 $sr=$sq->results();
+				 $sc=$sq->count();
+				 //$sq->execute()
+				 //var_dump($sr);
+				 if($sc==0){
+				   echo 'No Search Results Found';
+				 }
+				 else{
+					 foreach ($sr as $key) {
+						 $sp=$db->get('doctor',array(
+							 'd_id',
+							 '=',
+							 $key->id
+						 ))->first();
+						 ?>
+					 <tr class="bg-success">
+								 <td><?php echo $key->id; ?></td>
+								<td><?php echo $key->fullname; ?></td>
+								<td><?php echo $key->email; ?></td>
+								<td><?php echo $sp->speciality; ?></td>
+								<td><?php echo date_fo($key->joined); ?></td>
+								<td> <a class="btn btn-danger btn-sm" href="doctor.php?delete=<?php echo $key->id; ?>">Delete</a> </td>
+					 </tr><?php
 
+					 }
+				 }
+
+
+			 }else{ ?>
 			 <?php
-			 			$db=DB::getInstance();
+
 						$doctors=$db->get('users',array('type','=',2));
 						$Dlist=$doctors->results();
 						foreach ($Dlist as $key) {
+							$sp=$db->get('doctor',array(
+								'd_id',
+								'=',
+								$key->id
+							))->first();
 							?>
             <tr class="bg-success">
                   <td><?php echo $key->id; ?></td>
                  <td><?php echo $key->fullname; ?></td>
                  <td><?php echo $key->email; ?></td>
-                 <td><?php echo $key->joined; ?></td>
+								 <td><?php echo $sp->speciality; ?></td>
+                 <td><?php echo date_fo($key->joined); ?></td>
+								 <td> <a class="btn btn-danger btn-sm" href="doctor.php?delete=<?php echo $key->id; ?>">Delete</a> </td>
             </tr><?php
 
-						}
+					}}
 
 						 ?>
 

@@ -1,5 +1,6 @@
 <?php
 require 'core/init.php';
+include 'template/includes/head.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,11 +50,20 @@ if(Input::exists()){
 					'email'		=> Input::get('email'),
 					'password'	=> Hash::make(Input::get('password'), $salt),
 					'salt'		=> $salt,
-					'joined'	=> date('Y-m-d H:i:s')
+					'joined'	=> date('Y-m-d H:i:s'),
+					'type'=>1
 					));
-
+					$db=DB::getInstance();
+					$ud=$db->get('users',array(
+						'email',
+						'=',
+						Input::get('email')
+					))->first();
+					$db->insert('patient',array(
+						'patient_id'=>$ud->id
+					));
 				Session::flash('home', 'Thanks for registering! You can login now.');
-				Redirect::to('index.php');
+				Redirect::to('login.php');
 			}
 			catch(Exception $e){
 				die($e->getMessage());
@@ -61,7 +71,7 @@ if(Input::exists()){
 		}
 		else{
 			foreach ($validate->errors() as $error) {
-				echo $error, '<br />';
+				echo '<p class="bg-danger text-center">'.$error, '<br /></p>';
 			}
 		}
 	}
@@ -73,9 +83,10 @@ if(Input::exists()){
 
 
 
-<div class="card">
-<article class="card-body mx-auto" style="max-width: 400px;">
-	<h4 class="card-title mt-3 text-center">Create Account</h4>
+<div class="container">
+<div class="card card-register mx-auto mt-5">
+	<div class="card-header text-center">Create an Account</div>
+<div class="card-body">
 	<p class="text-center">Get started with your free account</p>
 
 	<form method="post">
@@ -102,7 +113,7 @@ if(Input::exists()){
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
-        <input name="password_again" class="form-control" placeholder="Repeat password" type="password" value="<?php echo escape(Input::get('password_again')); ?>" autocomplete="off">
+        <input name="password_again" class="form-control" placeholder="Password Again" type="password" value="<?php echo escape(Input::get('password_again')); ?>" autocomplete="off">
     </div> <!-- form-group// -->
     <div class="form-group">
 			<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
@@ -112,7 +123,7 @@ if(Input::exists()){
     <p class="text-center">Have an account? <a href="login.php">Log In</a> </p>
 </form>
 </article>
+</div>
+</div>
 </div> <!-- card.// -->
-
-</body>
-</html>
+<?php include 'template/includes/footer.php'; ?>

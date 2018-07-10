@@ -7,13 +7,13 @@
     <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="index.php">
-          <i class="fa fa-fw fa-dashboard"></i>
+          <i class="fa fa-fw fa-user-circle"></i>
           <span class="nav-link-text">Dashboard</span>
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Patients">
         <a class="nav-link" href="patient.php">
-          <i class="fa fa-fw fa-area-chart"></i>
+          <i class="fa fa-fw fa-user-md"></i>
           <span class="nav-link-text">Patients</span>
         </a>
       </li>

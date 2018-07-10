@@ -15,6 +15,10 @@ include BASEURL.'includes/navigation_patient.php';
 			</li>
 			<li class="breadcrumb-item active">Medical History</li>
 		</ol>
+		<div class="">
+			<p class="">My Visits</p>
+			<a href="#"></a>
+		</div>
 	</div>
 </div>
 <?php

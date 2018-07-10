@@ -3,7 +3,7 @@
 require_once '../core/init.php';
 $user = new User();
 if($user->isLoggedIn()) {
-	$title='Doctor: Change Password';
+	$title='Pharmacist: Change Password';
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_pharmacist.php';
 ?>

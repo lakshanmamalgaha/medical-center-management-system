@@ -3,13 +3,9 @@
 require_once '../core/init.php';
 $user = new User();
 if($user->isLoggedIn()) {
+	$title='Patient : Home';
 include BASEURL.'includes/head.php';
 include BASEURL.'includes/navigation_patient.php';
-
-if(Session::exists('success'))
-{
-	echo '<p class="text-success">' .Session::flash('success').'</p>';
-}
 
 ?>
 <div class="content-wrapper">
@@ -21,10 +17,96 @@ if(Session::exists('success'))
 			</li>
 			<li class="breadcrumb-item active">My Dashboard</li>
 		</ol>
-<?php
 
-?>
-	<p>Hello, <?php echo escape($user->data()->fullname); ?></p>
+
+		<?php
+		if(Session::exists('success'))
+		{
+			echo '<p class="text-success">' .Session::flash('success').'</p>';
+		}
+
+		$db=DB::getInstance();
+		$details=$db->get('patient',array(
+			'patient_id',
+			'=',
+			$user->data()->id
+		))->first();
+
+		 ?>
+
+						<div class="container">
+				      <div class="card mx-auto mt-10">
+				        <div class="card-header"><?php echo $user->data()->fullname; ?></div>
+				    			<div class="card-body">
+		                <div class="row">
+		                  <div class="col-md-3 col-lg-3 " align="center"> <img alt="Profile Picture" src="<?php echo $details->profile_picture_path; ?>" class="img-circle profile-image" width="200px" height="200px">
+
+		                   </div>
+
+		                  <div class=" col-md-9 col-lg-9 ">
+		                    <table class="table table-user-information">
+		                      <tbody>
+		                        <th>Basic Info</th>
+		                        <tr>
+		                          <td>Registration No:</td>
+		                          <td><?php echo $user->data()->id; ?></td>
+		                        </tr>
+		                        <tr>
+		                          <td>Email:</td>
+		                          <td><?php echo $user->data()->email; ?></td>
+		                        </tr>
+		                        <tr>
+		                          <td>NIC Number:</td>
+		                          <td> <?php echo $details->nic; ?></td>
+		                        </tr>
+		                        <tr>
+		                          <td>Phone Number:</td>
+		                          <td><?php echo $details->phonenumber; ?></td>
+		                        </tr>
+		                        <tr>
+		                          <td>Gender</td>
+		                          <td><?php echo $details->gender; ?> </td>
+		                        </tr>
+														<tr>
+		                          <td>Birthday</td>
+		                          <td><?php echo date_fo($details->birthday); ?> </td>
+		                        </tr>
+														<tr>
+		                          <td>Weight</td>
+		                          <td><?php echo $details->weight; ?> </td>
+		                        </tr>
+														<tr>
+		                          <td>Height</td>
+		                          <td><?php echo $details->height; ?> </td>
+		                        </tr>
+														<tr>
+		                          <td>Blood Group</td>
+		                          <td><?php echo $details->blood_group; ?> </td>
+		                        </tr>
+		                        <tr>
+		                          <td>Joined</td>
+		                          <td><?php echo date_fo($user->data()->joined) ; ?></td>
+		                        </tr>
+
+
+		                      </tbody>
+		                    </table>
+												<a href="update_profile.php?update=<?php echo $details->id; ?>" class="btn btn-primary" >Update Profile</a>
+
+
+
+		                  </div>
+		                </div>
+		              </div>
+
+
+		            </div>
+
+		      </div>
+
+
+
+
 	</div>
 </div>
 <?php
